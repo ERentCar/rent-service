@@ -1,6 +1,7 @@
 package com.rentCar.rentService.Services;
 
 import com.rentCar.rentService.Entities.Reservation;
+import com.rentCar.rentService.Resource.CarRentResource;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
@@ -15,4 +16,5 @@ public interface ReservationService {
     Reservation cancelReservation(Long reservationId);
     List<Reservation> getReservationsByOwner(Long ownerId);
     List<Reservation> getReservationsByClient(Long clientId);
+    List<CarRentResource>lista();
 }

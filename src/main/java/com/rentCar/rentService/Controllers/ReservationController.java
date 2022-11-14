@@ -1,6 +1,7 @@
 package com.rentCar.rentService.Controllers;
 
 import com.rentCar.rentService.Mapping.ReservationMapper;
+import com.rentCar.rentService.Resource.CarRentResource;
 import com.rentCar.rentService.Resource.CreateReservationResource;
 import com.rentCar.rentService.Resource.ReservationResource;
 import com.rentCar.rentService.Services.ReservationService;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/reservations")
@@ -72,5 +74,9 @@ public class ReservationController {
     public Page<ReservationResource> getReservationsByOwner(Pageable pageable,
                                                             @PathVariable("ownerId") Long ownerId){
         return mapper.modelListToPage(reservationService.getReservationsByOwner(ownerId),pageable);
+    }
+    @GetMapping("prueba")
+    public List<CarRentResource> getprueba(){
+        return reservationService.lista();
     }
 }

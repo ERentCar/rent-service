@@ -19,4 +19,5 @@ public class ReservationResource {
     private Long carId;
     private Long clientId;
     private Long ownerId;
+    private CarRentResource carRentResource;
 }

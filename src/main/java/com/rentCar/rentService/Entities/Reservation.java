@@ -1,5 +1,7 @@
 package com.rentCar.rentService.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.rentCar.rentService.Resource.CarRentResource;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -35,4 +37,11 @@ public class Reservation implements Serializable {
     private Long clientId;
 
     private Long ownerId;
+
+    @OneToOne(mappedBy = "reservation")
+    private Rent rent;
+
+    @JsonIgnore
+    @Transient
+    private CarRentResource carRentResource;
 }
