@@ -54,7 +54,9 @@ public class RentServiceImpl implements RentService {
                 .orElseThrow(() -> new ResourceNotFoundException("Reservation", reservationId));
 
         Date date=new Date();
-
+        reservationRepository.findById(reservationId).map(aux->reservationRepository.save(aux.withStatus(4))).
+                orElseThrow(()->new ResourceNotFoundException(ENTITY,reservationId));
+        reservation.setStatus(4);
         rent.setReservation(reservation);
         rent.setStatus(0);
         rent.setPayDate(date);
@@ -68,6 +70,13 @@ public class RentServiceImpl implements RentService {
                 orElseThrow(()->new ResourceNotFoundException(ENTITY,rentId));
         rent.setStatus(1);
         apiCall.setStateCar(rent.getReservation().getCarId(),0);
+        return rent;
+    }
+
+    @Override
+    public Rent finalizedRentWithRating(Long rentId) {
+        Rent rent= rentRepository.findById(rentId).map(aux->rentRepository.save(aux.withStatus(2))).
+                orElseThrow(()->new ResourceNotFoundException(ENTITY,rentId));
         return rent;
     }
 

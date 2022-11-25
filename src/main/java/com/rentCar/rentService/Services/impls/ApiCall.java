@@ -14,12 +14,20 @@ import java.util.List;
 public class ApiCall {
     @Autowired
     RestTemplate restTemplate;
-    public List<CarRentResource> getCars()throws RestClientException {
+    /*public List<CarRentResource> getCars()throws RestClientException {
         return Arrays.asList(restTemplate.getForObject("http://localhost:8115/api/v1/cars/ForRents",
                 CarRentResource[].class));
     }
     public void setStateCar(Long carId,int state)throws RestClientException {
-        restTemplate.exchange("http://localhost:8115/api/v1/cars/setState/"+carId+"state/"+state,
+        restTemplate.exchange("http://localhost:8115/api/v1/cars/setState/"+carId+"/state/"+state,
+                HttpMethod.PUT,null,void.class);
+    }*/
+    public List<CarRentResource> getCars()throws RestClientException {
+        return Arrays.asList(restTemplate.getForObject("https://cars-erentcar.azurewebsites.net/api/v1/cars/ForRents",
+                CarRentResource[].class));
+    }
+    public void setStateCar(Long carId,int state)throws RestClientException {
+        restTemplate.exchange("https://cars-erentcar.azurewebsites.net/api/v1/cars/setState/"+carId+"/state/"+state,
                 HttpMethod.PUT,null,void.class);
     }
 }

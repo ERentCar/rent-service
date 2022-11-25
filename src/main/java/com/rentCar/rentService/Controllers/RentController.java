@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/v1/rents")
 public class RentController {
@@ -48,5 +49,9 @@ public class RentController {
     public Page<RentResource> getAllRentsByOwnerId(@PathVariable("ownerId")Long ownerId,
                                                    Pageable pageable){
         return mapper.modelListToPage(rentService.getRentsByOwnerId(ownerId),pageable);
+    }
+    @PutMapping("setStateRent/{rentId}")
+    public RentResource setStateRent(@PathVariable("rentId")Long rentId){
+        return mapper.toResource(rentService.finalizedRentWithRating(rentId));
     }
 }

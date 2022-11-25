@@ -12,6 +12,7 @@ public interface RentService {
     Rent getById(Long rentId);
     Rent create(Long reservationId);
     Rent endRent(Long rentId);
+    Rent finalizedRentWithRating(Long rentId);
     List<Rent> getRentsByClientId(Long clientId);
     List<Rent> getRentsByOwnerId(Long ownerId);
 }

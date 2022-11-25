@@ -93,7 +93,7 @@ public class ReservationServiceImpl implements ReservationService {
                         reservationRepository.save(reservationAux.withStatus(3))).
                 orElseThrow(()->new ResourceNotFoundException(ENTITY,reservationId));
         reservation.setStatus(3);
-        apiCall.setStateCar(reservation.getCarId(),1);
+        apiCall.setStateCar(reservation.getCarId(),0);
         return reservation;
     }
 
